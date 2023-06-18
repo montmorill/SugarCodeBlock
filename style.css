@@ -1,0 +1,23 @@
+:root {
+  font-family: sans-serif;
+}
+
+html,
+body,
+#blocklyDiv {
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+  overflow: hidden;
+}
+
+#codePreview {
+  max-height: calc(100vh - 2em);
+  overflow-y: auto;
+  position: fixed;
+  right: 1em;
+  top: 1em;
+  user-select: text;
+}
