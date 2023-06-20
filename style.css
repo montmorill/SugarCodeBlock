@@ -1,6 +1,5 @@
-:root {
-  font-family: sans-serif;
-}
+@import url("https://fonts.font.im/css?family=Open+Sans");
+@import url("http://fonts.googleapis.com/icon?family=Material+Icons");
 
 html,
 body,
@@ -20,4 +19,19 @@ body,
   right: 1em;
   top: 1em;
   user-select: text;
+  font-family: "Open Sans", sans-serif;
+}
+
+.blocklyToolboxContents {
+  padding: 0em 0.4em 1.2em 0.4em;
+  color: white;
+}
+
+.blocklyTreeRow {
+  padding: 0.4em 0.6em 1.2em;
+  margin-bottom: 0.5em;
+  border-radius: 0.4em;
+}
+
+.categoryLabel {
 }
