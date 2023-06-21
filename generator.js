@@ -14,6 +14,7 @@ const varFunc = (name, args) =>
     args ? (typeof args === "string" ? args : `${args.join(",")}`) : ""
   }"`;
 const quote = (str) => `"${str}"`;
+const unquote = (str) => str.replace(/"/g, "");
 
 SCG.scrub_ = function (block, code, thisOnly) {
   const nextBlock = block.nextConnection && block.nextConnection.targetBlock();
@@ -21,6 +22,8 @@ SCG.scrub_ = function (block, code, thisOnly) {
   return code;
 };
 
+// ======================================================================= Base
+// -------------------------------------------------------------------- Trigger
 SCG.trigger = (block) => {
   const conditions = getStatement(block, `CONDITIONS`);
   const effects = getStatement(block, `EFFECTS`);
@@ -28,11 +31,26 @@ SCG.trigger = (block) => {
   return `@条件@效果\n${effects}`;
 };
 SCG.effect = (block) => `@条件@效果\n${getStatement(block, `EFFECTS`)}`;
-
-SCG.boolean = (block) => [block.getFieldValue("BOOL"), SCG.PRECEDENCE];
-SCG.number = (block) => [String(block.getFieldValue("NUM")), SCG.PRECEDENCE];
-SCG.text = (block) => [quote(block.getFieldValue("TEXT")), SCG.PRECEDENCE];
-
+// ----------------------------------------------------------------------- Data
+SCG.boolean = (block) => [getField(block, "BOOL"), SCG.PRECEDENCE];
+SCG.number = (block) => [String(getField(block, "NUM")), SCG.PRECEDENCE];
+SCG.text = (block) => [quote(getField(block, "TEXT")), SCG.PRECEDENCE];
+// ----------------------------------------------------------------------- Math
+SCG.calc = (block) => [
+  quote(
+    getField(block, "TYPE") +
+      "(" +
+      unquote(getValue(block, "LEFT")) +
+      "," +
+      unquote(getValue(block, "RIGHT")) +
+      ")"
+  ),
+  SCG.PRECEDENCE,
+];
+// ===================================================================== Hijack
+// ------------------------------------------------------------------- Variable
+// ------------------------------------------------------------------ Condition
+// --------------------------------------------------------------------- Effect
 SCG.coin = (block) =>
   makeFunc(getField(block, "TYPE") + "_coin", getValue(block, "NUM"));
 SCG.weight = (block) =>
@@ -52,14 +70,8 @@ SCG.pro_get = (block) =>
     getValue(block, "MAX"),
   ]);
 
-SCG.append = (block) =>
-  makeFunc(getField(block, "TYPE"), getValue(block, "TEXT"));
-SCG.slic = (block) =>
-  makeFunc("slic", [
-    getValue(block, "START"),
-    getValue(block, "END"),
-    getValue(block, "STEP"),
-  ]);
+// ======================================================================= Chat
+// ------------------------------------------------------------------- Variable
 SCG.newTempNum = (block) =>
   makeFunc("newTempNum", [
     quote(getField(block, "VAR")),
@@ -80,8 +92,6 @@ SCG.get_variable = (block) => [
   varFunc(getField(block, "TYPE"), getField(block, "VAR")),
   SCG.PRECEDENCE,
 ];
-SCG.skip = (block) => makeFunc("skip");
-SCG.special_operate = (block) => makeFunc(getField(block, "OP"));
 SCG.other = (block) => [
   varFunc("other" + getField(block, "TYPE")),
   SCG.PRECEDENCE,
@@ -98,5 +108,45 @@ SCG.input = (block) => [
   ]),
   SCG.PRECEDENCE,
 ];
+// ------------------------------------------------------------------ Condition
+SCG.check = (block) =>
+  makeFunc("check" + getField(block, "TYPE"), getValue(block, "TEXT"));
+SCG.checkSize = (block) => {
+  const type = getField(block, "TYPE");
+  const num = getValue(block, "NUM");
+  return makeFunc("checkSize", [
+    (type[0] === "-" && num == 0 ? "" : "-") + num,
+    type[1],
+  ]);
+};
+SCG.randomNum = (block) => {
+  const num = getValue(block, "NUM");
+  return makeFunc("randomNum", (num == 0 ? "" : getField(block, "TYPE")) + num);
+};
+SCG.proba = (block) => makeFunc("proba", getValue(block, "NUM"));
+SCG.cprNums = (block) =>
+  makeFunc("cprNums", [
+    getValue(block, "LEFT"),
+    getValue(block, "RIGHT"),
+    getField(block, "TYPE"),
+  ]);
+SCG.isDigit = (block) => makeFunc("isDigit", getValue(block, "TEXT"));
+// --------------------------------------------------------------------- Effect
+SCG.append = (block) => {
+  const type = getField(block, "TYPE");
+  const text = block.getInput("TEXT");
+  return makeFunc(
+    type + (text.connection.targetConnection.check_[0] === "Number" ? "2" : ""),
+    getValue(block, "TEXT")
+  );
+};
+SCG.slic = (block) =>
+  makeFunc("slic", [
+    getValue(block, "START"),
+    getValue(block, "END"),
+    getValue(block, "STEP"),
+  ]);
+SCG.skip = (block) => makeFunc("skip");
+SCG.special_operate = (block) => makeFunc(getField(block, "TYPE"));
 
 export { SCG as SugarCodeGenerator };

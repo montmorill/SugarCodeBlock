@@ -1,28 +1,67 @@
 export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // ===================================================================== Base
+  // ------------------------------------------------------------------ Trigger
   // trigger
   {
     type: "trigger",
+    inputsInline: "true",
     colour: 160,
-    message0: "条件",
+    message0: "%1 条件",
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "TYPE",
+        options: [
+          ["抢劫", "Hijack"],
+          ["高级调教", "Chat"],
+        ],
+      },
+    ],
     message1: "%1",
-    args1: [{ type: "input_statement", name: "CONDITIONS" }],
+    args1: [
+      {
+        type: "input_statement",
+        name: "CONDITIONS",
+        check: ["HijackCondition", "ChatCondition"],
+      },
+    ],
     message2: "效果",
     message3: "%1",
-    args3: [{ type: "input_statement", name: "EFFECTS" }],
+    args3: [
+      {
+        type: "input_statement",
+        name: "EFFECTS",
+        check: ["HijackEffect", "ChatEffect"],
+      },
+    ],
+    extensions: ["trigger_extension"],
   },
   // effect
   {
     type: "effect",
+    inputsInline: "true",
     colour: 160,
-    message0: "效果",
+    message0: "%1 效果",
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "TYPE",
+        options: [
+          ["抢劫", "Hijack"],
+          ["高级调教", "Chat"],
+        ],
+      },
+    ],
     message1: "%1",
     args1: [{ type: "input_statement", name: "EFFECTS" }],
+    extensions: ["trigger_extension"],
   },
+  // --------------------------------------------------------------------- Data
   // boolean
   {
     type: "boolean",
     output: "Boolean",
+    inputsInline: "true",
     colour: 160,
     message0: "%1",
     args0: [
@@ -40,11 +79,38 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
     type: "number",
     output: "Number",
+    inputsInline: "true",
     colour: 160,
     message0: "%1",
     args0: [{ type: "field_number", name: "NUM" }],
   },
   // text (built-in)
+  // --------------------------------------------------------------------- Math
+  // calc
+  {
+    type: "calc",
+    output: "Number",
+    inputsInline: "true",
+    colour: 160,
+    message0: "%1 %2 %3",
+    args0: [
+      { type: "input_value", name: "LEFT", check: "Number" },
+      {
+        type: "field_dropdown",
+        name: "TYPE",
+        options: [
+          ["+", "add"],
+          ["-", "sub"],
+          ["*", "mul"],
+          ["/", "div"],
+          ["//", "idiv"],
+          ["%", "mod"],
+          ["**", "pow"],
+        ],
+      },
+      { type: "input_value", name: "RIGHT", check: "Number" },
+    ],
+  },
   // =================================================================== Hijack
   // ----------------------------------------------------------------- Variable
   // ---------------------------------------------------------------- Condition
@@ -52,9 +118,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // coin
   {
     type: "coin",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: "HijackEffect",
+    nextStatement: "HijackEffect",
+    inputsInline: "true",
     colour: 360,
     message0: "将掉落金币 %1 设为 %2",
     args0: [
@@ -72,9 +138,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // weight
   {
     type: "weight",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: "HijackEffect",
+    nextStatement: "HijackEffect",
+    inputsInline: "true",
     colour: 360,
     message0: "将 %1 %2 权值设为 %3",
     args0: [
@@ -100,9 +166,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // attr
   {
     type: "attr",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: "HijackEffect",
+    nextStatement: "HijackEffect",
+    inputsInline: "true",
     colour: 360,
     message0: "将己方 %1 设为 %2",
     args0: [
@@ -121,9 +187,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // trueAttact
   {
     type: "trueAttact",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: "HijackEffect",
+    nextStatement: "HijackEffect",
+    inputsInline: "true",
     colour: 360,
     message0: "将最终伤害值设为 %1",
     args0: [{ type: "input_value", name: "NUM", check: "Number" }],
@@ -131,9 +197,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // fre
   {
     type: "fre",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: "HijackEffect",
+    nextStatement: "HijackEffect",
+    inputsInline: "true",
     colour: 360,
     message0: "将抢劫次数上限设置为 %1",
     args0: [{ type: "input_value", name: "NUM", check: "Number" }],
@@ -141,9 +207,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // costFre
   {
     type: "costFre",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: "HijackEffect",
+    nextStatement: "HijackEffect",
+    inputsInline: "true",
     colour: 360,
     message0: "消耗 %1 次抢劫次数",
     args0: [{ type: "input_value", name: "NUM", check: "Number" }],
@@ -151,9 +217,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // SeeCha
   {
     type: "SeeCha",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: "HijackEffect",
+    nextStatement: "HijackEffect",
+    inputsInline: "true",
     colour: 360,
     message0: "查看对方 %1 权值",
     args0: [
@@ -170,9 +236,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // pro_get
   {
     type: "pro_get",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: "HijackEffect",
+    nextStatement: "HijackEffect",
+    inputsInline: "true",
     colour: 360,
     message0: "额外获得 %1 倍的金币",
     args0: [{ type: "input_value", name: "PRO", check: "Number" }],
@@ -186,9 +252,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // newTempNum
   {
     type: "newTempNum",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: ["ChatCondition", "ChatEffect"],
+    nextStatement: ["ChatCondition", "ChatEffect"],
+    inputsInline: "true",
     colour: 210,
     message0: "新建临时变量 %1 并赋值为 %2",
     args0: [
@@ -199,9 +265,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // toTempDigit
   {
     type: "toTempDigit",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: ["ChatCondition", "ChatEffect"],
+    nextStatement: ["ChatCondition", "ChatEffect"],
+    inputsInline: "true",
     colour: 210,
     message0: "临时变量 %1 赋值为 %2",
     args0: [
@@ -212,9 +278,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // change_variable
   {
     type: "change_variable",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: ["ChatCondition", "ChatEffect"],
+    nextStatement: ["ChatCondition", "ChatEffect"],
+    inputsInline: "true",
     colour: 210,
     message0: "%1 变量 %2 %3 %4",
     args0: [
@@ -241,9 +307,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
           ["次方", "6"],
           ["整除", "7"],
           ["开方", "8"],
-          ["赋值", "9"],
-          ["最大值", "10"],
-          ["最小值", "11"],
+          ["赋值为", "9"],
+          ["取最大值", "10"],
+          ["取最小值", "11"],
         ],
       },
       { type: "input_value", name: "NUM", check: "Number" },
@@ -253,6 +319,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
     type: "get_variable",
     output: "Number",
+    inputsInline: "true",
     colour: 210,
     message0: "%1 变量 %2",
     args0: [
@@ -272,6 +339,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
     type: "other",
     output: "String",
+    inputsInline: "true",
     colour: 210,
     message0: "%1",
     args0: [
@@ -290,6 +358,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
     type: "random",
     output: "Number",
+    inputsInline: "true",
     colour: 210,
     message0: "从 %1 到 %2 的随机数",
     args0: [
@@ -301,6 +370,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   {
     type: "input",
     output: "String",
+    inputsInline: "true",
     colour: 210,
     message0: "获取输入并切片 [ %1 : %2 : %3 ]",
     args0: [
@@ -310,13 +380,119 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     ],
   },
   // ---------------------------------------------------------------- Condition
+  // check
+  {
+    type: "check",
+    previousStatement: "ChatCondition",
+    nextStatement: "ChatCondition",
+    inputsInline: "true",
+    colour: 210,
+    message0: "匹配 %1 %2",
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "TYPE",
+        options: [
+          ["开头", "Start"],
+          ["结尾", "End"],
+          ["全文", "Msg"],
+          ["关键词", "Keyword"],
+        ],
+      },
+      { type: "input_value", name: "TEXT", check: ["String"] },
+    ],
+  },
+  // checkSize
+  {
+    type: "checkSize",
+    previousStatement: "ChatCondition",
+    nextStatement: "ChatCondition",
+    inputsInline: "true",
+    colour: 210,
+    message0: "判断消息长短 %1 %2",
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "TYPE",
+        options: [
+          ["<", "-F"],
+          [">", "+F"],
+          ["≤", "-T"],
+          ["≥", "+T"],
+        ],
+      },
+      { type: "input_value", name: "NUM", check: ["Number"] },
+    ],
+  },
+  // randomNum
+  {
+    type: "randomNum",
+    previousStatement: "ChatCondition",
+    nextStatement: "ChatCondition",
+    inputsInline: "true",
+    colour: 210,
+    message0: "固定随机数 %1 %2",
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "TYPE",
+        options: [["<", "-"], [">", "+"]],
+      },
+      { type: "input_value", name: "NUM", check: "Number" },
+    ],
+  },
+  // proba
+  {
+    type: "proba",
+    previousStatement: "ChatCondition",
+    nextStatement: "ChatCondition",
+    inputsInline: "true",
+    colour: 210,
+    message0: "触发概率 %1 %%",
+    args0: [{ type: "input_value", name: "NUM", check: "Number" }],
+  },
+  // cprNums
+  {
+    type: "cprNums",
+    previousStatement: "ChatCondition",
+    nextStatement: "ChatCondition",
+    inputsInline: "true",
+    colour: 210,
+    message0: "判断 %1 %2 %3",
+    args0: [
+      { type: "input_value", name: "LEFT", check: "Number" },
+      {
+        type: "field_dropdown",
+        name: "TYPE",
+        options: [
+          ["<", "0"],
+          ["=", "1"],
+          [">", "2"],
+          ["≤", "3"],
+          ["≥", "4"],
+          ["≠", "5"],
+        ],
+      },
+      { type: "input_value", name: "RIGHT", check: "Number" },
+    ],
+  },
+  // isDigit
+  {
+    type: "isDigit",
+    previousStatement: "ChatCondition",
+    nextStatement: "ChatCondition",
+    inputsInline: "true",
+    colour: 210,
+    message0: "判断 %1 内都是数字",
+    args0: [{ type: "input_value", name: "TEXT", check: "String" }],
+  },
   // ------------------------------------------------------------------- Effect
   // append
   {
     type: "append",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: "ChatEffect",
+    nextStatement: "ChatEffect",
+    inputsInline: "true",
     colour: 210,
     message0: "追加 %1 %2",
     args0: [
@@ -335,9 +511,9 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // slic
   {
     type: "slic",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: "ChatEffect",
+    nextStatement: "ChatEffect",
+    inputsInline: "true",
     colour: 210,
     message0: "将当前文本切片 [ %1 : %2 : %3 ]",
     args0: [
@@ -349,24 +525,24 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // skip
   {
     type: "skip",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: "ChatEffect",
+    nextStatement: "ChatEffect",
+    inputsInline: "true",
     colour: 210,
     message0: "跳过触发组",
   },
   // special_operate
   {
     type: "special_operate",
-    previousStatement: null,
-    nextStatement: null,
-    inputsInline: true,
+    previousStatement: "ChatEffect",
+    nextStatement: "ChatEffect",
+    inputsInline: "true",
     colour: 210,
     message0: "%1",
     args0: [
       {
         type: "field_dropdown",
-        name: "OP",
+        name: "TYPE",
         options: [
           ["艾特对方", "atAim"],
           ["撤回对方的消息", "deleteAimMsg"],
@@ -377,12 +553,24 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
 ]);
 
 Blockly.Msg.TEXT_TEXT_TOOLTIP = "";
+Blockly.Msg.TEXT_TEXT_HELPURL = "";
 
 Blockly.Extensions.register("append_extension", function () {
   const type = this.getField("TYPE");
   const text = this.getInput("TEXT");
   type.setValidator((newValue) => {
     text.setCheck(newValue === "append" ? ["Number", "String"] : "String");
+    return newValue;
+  });
+});
+
+Blockly.Extensions.register("trigger_extension", function () {
+  const type = this.getField("TYPE");
+  const conditions = this.getInput("CONDITIONS");
+  const effects = this.getInput("EFFECTS");
+  type.setValidator((newValue) => {
+    if (conditions) conditions.setCheck(newValue + "Condition");
+    effects.setCheck(newValue + "Effect");
     return newValue;
   });
 });

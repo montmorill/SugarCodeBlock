@@ -31,13 +31,14 @@ class SugarCodeCategory extends Blockly.ToolboxCategory {
     icon.className = "material-icons md-32";
     icon.innerText = [
       "widgets",
-      "polymer",
+      "calculate",
+      // "polymer",
+      // "api",
+      // "wysiwyg",
       "apps",
       "casino",
-      "api",
+      "dns",
       "dashboard",
-      // "dns",
-      // "wysiwyg",
       "mode_comment",
     ][Number(this.id_.at(-1))];
     icon.style["padding-top"] = "0.2em";

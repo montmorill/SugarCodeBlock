@@ -1,26 +1,38 @@
 export const toolbox = {
   kind: "categoryToolbox",
   contents: [
-    // ------------------------------------------------------------------- Base
+    // =================================================================== Base
     {
       kind: "category",
       name: "基本",
       colour: 160,
       contents: [
+        // ------------------------------------------------------------ Trigger
         // trigger
         { kind: "block", type: "trigger" },
         // effect
         { kind: "block", type: "effect" },
+        // --------------------------------------------------------------- Data
         // boolean
         { kind: "block", type: "boolean" },
         // number
         { kind: "block", type: "number" },
         // text
         { kind: "block", type: "text", fields: { TEXT: "Hello, Sugar!" } },
+        // --------------------------------------------------------------- Math
+        // calc
+        {
+          kind: "block",
+          type: "calc",
+          inputs: {
+            LEFT: { shadow: { type: "number" } },
+            RIGHT: { shadow: { type: "number" } },
+          },
+        },
       ],
     },
     { kind: "label", text: "抢劫", "web-class": "categoryLabel" },
-    // ----------------------------------------------------------------- Hijack
+    // ================================================================= Hijack
     // --------------------------------------------------------------- Variable
     { kind: "category", name: "变量", colour: 360, contents: [] },
     // -------------------------------------------------------------- Condition
@@ -81,7 +93,7 @@ export const toolbox = {
         },
       ],
     },
-    // ------------------------------------------------------------------- Chat
+    // =================================================================== Chat
     { kind: "label", text: "高级调教", "web-class": "categoryLabel" },
     // --------------------------------------------------------------- Variable
     {
@@ -136,7 +148,46 @@ export const toolbox = {
       ],
     },
     // -------------------------------------------------------------- Condition
-    { kind: "category", name: "条件", colour: 210, contents: [] },
+    {
+      kind: "category",
+      name: "条件",
+      colour: 210,
+      contents: [
+        {
+          kind: "block",
+          type: "check",
+          inputs: { TEXT: { shadow: { type: "text" } } },
+        },
+        {
+          kind: "block",
+          type: "checkSize",
+          inputs: { NUM: { shadow: { type: "number" } } },
+        },
+        {
+          kind: "block",
+          type: "randomNum",
+          inputs: { NUM: { shadow: { type: "number" } } },
+        },
+        {
+          kind: "block",
+          type: "proba",
+          inputs: { NUM: { shadow: { type: "number" } } },
+        },
+        {
+          kind: "block",
+          type: "cprNums",
+          inputs: {
+            LEFT: { shadow: { type: "number" } },
+            RIGHT: { shadow: { type: "number" } },
+          },
+        },
+        {
+          kind: "block",
+          type: "isDigit",
+          inputs: { TEXT: { shadow: { type: "text" } } },
+        },
+      ],
+    },
     // ----------------------------------------------------------------- Effect
     {
       kind: "category",
