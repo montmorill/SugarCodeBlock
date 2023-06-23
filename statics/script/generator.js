@@ -9,10 +9,12 @@ const makeFunc = (name, args) =>
   `>${name} | ${
     args ? (typeof args === "string" ? args : `[${args.join(", ")}]`) : "T"
   }\n`;
-const varFunc = (name, args) =>
+const varFunc = (name, args) => [
   `"_${name}${
     args ? (typeof args === "string" ? args : `${args.join(",")}`) : ""
-  }"`;
+  }"`,
+  SCG.PRECEDENCE,
+];
 const innerFunc = (name, args) => [
   `"${name}(${
     args
@@ -92,26 +94,17 @@ SCG.change_variable = (block) =>
     getField(block, "OP"),
     getValue(block, "NUM"),
   ]);
-SCG.get_variable = (block) => [
-  varFunc(getField(block, "TYPE"), getField(block, "VAR")),
-  SCG.PRECEDENCE,
-];
-SCG.other = (block) => [
-  varFunc("other" + getField(block, "TYPE")),
-  SCG.PRECEDENCE,
-];
-SCG.random = (block) => [
-  varFunc("random", [getValue(block, "MIN"), getValue(block, "MAX")]),
-  SCG.PRECEDENCE,
-];
-SCG.input = (block) => [
+SCG.get_variable = (block) =>
+  varFunc(getField(block, "TYPE"), getField(block, "VAR"));
+SCG.other = (block) => varFunc("other" + getField(block, "TYPE"));
+SCG.random = (block) =>
+  varFunc("random", [getValue(block, "MIN"), getValue(block, "MAX")]);
+SCG.input = (block) =>
   varFunc("input", [
     getValue(block, "START"),
     getValue(block, "END"),
     getValue(block, "STEP"),
-  ]),
-  SCG.PRECEDENCE,
-];
+  ]);
 SCG.digit = (block) => innerFunc("dight", getValue(block, "TEXT"));
 SCG.str = (block) => innerFunc("str", getValue(block, "NUM"));
 SCG.atb = (block) => varFunc(getField(block, "TYPE"));
