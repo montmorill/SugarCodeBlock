@@ -1,5 +1,5 @@
-@import url("https://fonts.font.im/css?family=Open+Sans");
-@import url("http://fonts.googleapis.com/icon?family=Material+Icons");
+@import url(./font/Open-Sans/font.css);
+@import url(./font/Material-Icons/font.css);
 
 html,
 body,
@@ -13,8 +13,9 @@ body,
 }
 
 #codePreview {
+  max-width: 20%;
   max-height: calc(100vh - 2em);
-  overflow-y: auto;
+  overflow: auto;
   position: fixed;
   right: 1em;
   top: 1em;
