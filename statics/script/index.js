@@ -43,12 +43,26 @@ workspace.addChangeListener(function (event) {
 const toolboxs = document.getElementsByClassName("blocklyToolboxContents")[0];
 const firstChild = toolboxs.firstChild;
 const dumpButton = document.createElement("button");
+const saveButton = document.createElement("button");
 const loadButton = document.createElement("button");
 const fileInput = document.getElementById("fileInput");
-dumpButton.innerText = "保存";
-loadButton.innerText = "加载";
+dumpButton.innerText = "导出为sgc";
+saveButton.innerText = "保存工程";
+loadButton.innerText = "加载工程";
 loadButton.style["margin-bottom"] = "0.6em";
 dumpButton.onclick = () => {
+  const code = SugarCodeGenerator.workspaceToCode(workspace);
+  const blob = new Blob([code], { type: "text/plain;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  const date = new Date();
+  link.download = date.getTime() + ".sgc";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(link.href);
+};
+saveButton.onclick = () => {
   const xml = Blockly.Xml.workspaceToDom(workspace);
   const text = Blockly.Xml.domToText(xml);
   const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
@@ -74,4 +88,5 @@ fileInput.onchange = () => {
   };
 };
 toolboxs.insertBefore(dumpButton, firstChild);
+toolboxs.insertBefore(saveButton, firstChild);
 toolboxs.insertBefore(loadButton, firstChild);
