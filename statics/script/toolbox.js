@@ -145,6 +145,18 @@ export const toolbox = {
             STEP: { shadow: { type: "number", fields: { NUM: 99999 } } },
           },
         },
+        // digit
+        {
+          kind: "block",
+          type: "digit",
+          inputs: { TEXT: { shadow: { type: "text" } } },
+        },
+        // str
+        {
+          kind: "block",
+          type: "str",
+          inputs: { NUM: { shadow: { type: "number" } } },
+        },
       ],
     },
     // -------------------------------------------------------------- Condition

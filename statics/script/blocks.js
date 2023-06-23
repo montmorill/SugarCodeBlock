@@ -380,6 +380,24 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       { type: "input_value", name: "STEP", check: "Number" },
     ],
   },
+  // digit
+  {
+    type: "digit",
+    output: "Number",
+    inputsInline: "true",
+    colour: 210,
+    message0: "将 %1 转换为数字",
+    args0: [{ type: "input_value", name: "TEXT", check: "String" }],
+  },
+  // str
+  {
+    type: "str",
+    output: "String",
+    inputsInline: "true",
+    colour: 210,
+    message0: "将 %1 转换为文本",
+    args0: [{ type: "input_value", name: "NUM", check: "Number" }],
+  },
   // ---------------------------------------------------------------- Condition
   // check
   {
@@ -437,7 +455,10 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       {
         type: "field_dropdown",
         name: "TYPE",
-        options: [["<", "-"], [">", "+"]],
+        options: [
+          ["<", "-"],
+          [">", "+"],
+        ],
       },
       { type: "input_value", name: "NUM", check: "Number" },
     ],

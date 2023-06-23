@@ -13,6 +13,16 @@ const varFunc = (name, args) =>
   `"_${name}${
     args ? (typeof args === "string" ? args : `${args.join(",")}`) : ""
   }"`;
+const innerFunc = (name, args) => [
+  `"${name}(${
+    args
+      ? typeof args === "string"
+        ? unquote(args)
+        : `${args.map((arg) => unquote(arg)).join(",")}`
+      : ""
+  })"`,
+  SCG.PRECEDENCE,
+];
 const quote = (str) => `"${str}"`;
 const unquote = (str) => str.replace(/"/g, "");
 
@@ -36,17 +46,11 @@ SCG.boolean = (block) => [getField(block, "BOOL"), SCG.PRECEDENCE];
 SCG.number = (block) => [String(getField(block, "NUM")), SCG.PRECEDENCE];
 SCG.text = (block) => [quote(getField(block, "TEXT")), SCG.PRECEDENCE];
 // ----------------------------------------------------------------------- Math
-SCG.calc = (block) => [
-  quote(
-    getField(block, "TYPE") +
-      "(" +
-      unquote(getValue(block, "LEFT")) +
-      "," +
-      unquote(getValue(block, "RIGHT")) +
-      ")"
-  ),
-  SCG.PRECEDENCE,
-];
+SCG.calc = (block) =>
+  innerFunc(getField(block, "TYPE"), [
+    getValue(block, "LEFT"),
+    getValue(block, "RIGHT"),
+  ]);
 // ===================================================================== Hijack
 // ------------------------------------------------------------------- Variable
 // ------------------------------------------------------------------ Condition
@@ -108,6 +112,8 @@ SCG.input = (block) => [
   ]),
   SCG.PRECEDENCE,
 ];
+SCG.digit = (block) => innerFunc("dight", getValue(block, "TEXT"));
+SCG.str = (block) => innerFunc("str", getValue(block, "NUM"));
 // ------------------------------------------------------------------ Condition
 SCG.check = (block) =>
   makeFunc("check" + getField(block, "TYPE"), getValue(block, "TEXT"));
