@@ -67,7 +67,7 @@ class SugarCodeConstantProvider extends Blockly.blockRendering
   }
 
   shapeFor(connection) {
-    var checks = connection.getCheck();
+    const checks = connection.getCheck();
     switch (connection.type) {
       case Blockly.INPUT_VALUE:
       case Blockly.OUTPUT_VALUE:

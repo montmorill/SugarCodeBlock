@@ -20,11 +20,11 @@ workspace.addChangeListener(function (event) {
   const code = SugarCodeGenerator.workspaceToCode(workspace);
   document.getElementById("codePreview").innerText = code;
 });
-
+/*
 workspace.addChangeListener(function (event) {
   console.log(event.type);
   if (event.isUiEvent) return;
-  var block = workspace.getBlockById(event.blockId);
+  const block = workspace.getBlockById(event.blockId);
   if (block && block.previousConnection && block.nextConnection) {
     console.log(block.previousConnection.check_, block.nextConnection.check_);
     if (block.previousConnection.isConnected()) {
@@ -32,10 +32,46 @@ workspace.addChangeListener(function (event) {
     } else if (block.nextConnection.isConnected()) {
       block.previousConnection.setCheck(block.nextConnection.check_);
     } else {
-      var prototype = Blockly.Blocks[block.type];
+      const prototype = Blockly.Blocks[block.type];
       block.previousConnection.setCheck(prototype.previousStatement);
       block.nextConnection.setCheck(prototype.nextStatement);
     }
     console.log(block.previousConnection.check_, block.nextConnection.check_);
   }
 });
+*/
+const toolboxs = document.getElementsByClassName("blocklyToolboxContents")[0];
+const firstChild = toolboxs.firstChild;
+const dumpButton = document.createElement("button");
+const loadButton = document.createElement("button");
+const fileInput = document.getElementById("fileInput");
+dumpButton.innerText = "保存";
+loadButton.innerText = "加载";
+loadButton.style["margin-bottom"] = "0.6em";
+dumpButton.onclick = () => {
+  const xml = Blockly.Xml.workspaceToDom(workspace);
+  const text = Blockly.Xml.domToText(xml);
+  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  const date = new Date();
+  link.download = date.getTime() + ".scb";
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(link.href);
+};
+loadButton.onclick = () => {
+  fileInput.click();
+};
+fileInput.onchange = () => {
+  let reader = new FileReader();
+  reader.readAsText(fileInput.files[0]);
+  reader.onload = (event) => {
+    const xml_text = event.target.result;
+    const xml = Blockly.utils.xml.textToDom(xml_text);
+    Blockly.Xml.domToWorkspace(xml, workspace);
+  };
+};
+toolboxs.insertBefore(dumpButton, firstChild);
+toolboxs.insertBefore(loadButton, firstChild);

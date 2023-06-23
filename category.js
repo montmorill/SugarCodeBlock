@@ -9,7 +9,7 @@ class SugarCodeCategory extends Blockly.ToolboxCategory {
 
   setSelected(isSelected) {
     this.rowDiv_.style.backgroundColor = this.colour_;
-    var labelDom = this.rowDiv_.getElementsByClassName("blocklyTreeLabel")[0];
+    const labelDom = this.rowDiv_.getElementsByClassName("blocklyTreeLabel")[0];
     if (isSelected) {
       this.rowDiv_.style.backgroundColor = "white";
       labelDom.style.color = this.colour_;
