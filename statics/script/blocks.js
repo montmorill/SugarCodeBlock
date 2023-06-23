@@ -107,11 +107,19 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
           ["%", "mod"],
           ["**", "pow"],
           ["取整", "round"],
-          ["|x|", "abs"],
         ],
       },
       { type: "input_value", name: "RIGHT", check: "Number" },
     ],
+  },
+  // abs
+  {
+    type: "abs",
+    output: "Number",
+    inputsInline: "true",
+    colour: 160,
+    message0: "%1 的绝对值",
+    args0: [{ type: "input_value", name: "NUM", check: "Number" }],
   },
   // =================================================================== Hijack
   // ----------------------------------------------------------------- Variable

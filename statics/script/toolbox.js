@@ -29,9 +29,14 @@ export const toolbox = {
             RIGHT: { shadow: { type: "number" } },
           },
         },
+        // abs
+        {
+          kind: "block",
+          type: "abs",
+          inputs: { NUM: { shadow: { type: "number" } } },
+        },
       ],
     },
-    { kind: "label", text: "抢劫", "web-class": "categoryLabel" },
     // ================================================================= Hijack
     // --------------------------------------------------------------- Variable
     { kind: "category", name: "变量", colour: 360, contents: [] },
@@ -94,7 +99,6 @@ export const toolbox = {
       ],
     },
     // =================================================================== Chat
-    { kind: "label", text: "高级调教", "web-class": "categoryLabel" },
     // --------------------------------------------------------------- Variable
     {
       kind: "category",
