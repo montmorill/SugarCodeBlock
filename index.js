@@ -55,7 +55,7 @@ dumpButton.onclick = () => {
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
   const date = new Date();
-  link.download = date.getTime() + ".scb";
+  link.download = date.getTime() + ".sgcb";
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
