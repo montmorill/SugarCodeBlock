@@ -157,6 +157,8 @@ export const toolbox = {
           type: "str",
           inputs: { NUM: { shadow: { type: "number" } } },
         },
+        // atb
+        { kind: "block", type: "atb" },
       ],
     },
     // -------------------------------------------------------------- Condition

@@ -398,6 +398,36 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     message0: "将 %1 转换为文本",
     args0: [{ type: "input_value", name: "NUM", check: "Number" }],
   },
+  // atb
+  {
+    type: "atb",
+    output: "Number",
+    inputsInline: "true",
+    colour: 210,
+    message0: "用户 %1",
+    args0: [
+      {
+        type: "field_dropdown",
+        name: "TYPE",
+        options: [
+          ["金币", "金币"],
+          ["经验值", "经验值"],
+          ["等级", "等级"],
+          ["好感度", "好感度"],
+          ["熟练度", "熟练度"],
+          ["进攻成功次数", "成功次数"],
+          ["进攻失败次数", "失败次数"],
+          ["防御成功次数", "被抢劫成功次数"],
+          ["防御失败次数", "被抢劫失败次数"],
+          ["总抢劫金币", "一共抢劫金币"],
+          ["荣誉值", "荣誉值"],
+          ["能量百分比", "能量百分比"],
+          ["卡片携带上限", "卡片携带上限"],
+          ["血量百分比", "血量百分比"],
+        ],
+      },
+    ],
+  },
   // ---------------------------------------------------------------- Condition
   // check
   {
