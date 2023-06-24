@@ -146,7 +146,7 @@ SCG.slic = (block) =>
     getValue(block, "END"),
     getValue(block, "STEP"),
   ]);
-SCG.skip = (block) => makeFunc("skip");
+SCG.skip = (block) => makeFunc("skip", getValue(block, "NUM"));
 SCG.special_operate = (block) => makeFunc(getField(block, "TYPE"));
 
 export { SCG as SugarCodeGenerator };

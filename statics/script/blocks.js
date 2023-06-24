@@ -590,7 +590,8 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     nextStatement: "ChatEffect",
     inputsInline: "true",
     colour: 210,
-    message0: "跳过触发组",
+    message0: "跳过 %1 个触发组",
+    args0: [{ type: "input_value", name: "NUM", check: "Number" }],
   },
   // special_operate
   {

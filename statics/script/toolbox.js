@@ -229,7 +229,11 @@ export const toolbox = {
           },
         },
         // skip
-        { kind: "block", type: "skip" },
+        {
+          kind: "block",
+          type: "skip",
+          inputs: { NUM: { shadow: { type: "number" } } },
+        },
         // special_operate
         { kind: "block", type: "special_operate" },
       ],
