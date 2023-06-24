@@ -53,7 +53,7 @@ SCG.calc = (block) =>
     getValue(block, "LEFT"),
     getValue(block, "RIGHT"),
   ]);
-SCG.abs = (block) => innerFunc("abs", getField(block, "NUM"));
+SCG.abs = (block) => innerFunc("abs", getValue(block, "NUM"));
 // ===================================================================== Hijack
 // ------------------------------------------------------------------- Variable
 // ------------------------------------------------------------------ Condition
