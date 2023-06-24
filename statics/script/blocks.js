@@ -271,6 +271,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       { type: "field_input", name: "VAR" },
       { type: "input_value", name: "NUM", check: "Number" },
     ],
+    extensions: ["var_validator"],
   },
   // toTempDigit
   {
@@ -284,6 +285,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       { type: "field_input", name: "VAR" },
       { type: "input_value", name: "TEXT", check: "String" },
     ],
+    extensions: ["var_validator"],
   },
   // change_variable
   {
@@ -324,6 +326,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       },
       { type: "input_value", name: "NUM", check: "Number" },
     ],
+    extensions: ["var_validator"],
   },
   // get_variable
   {
@@ -344,6 +347,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       },
       { type: "field_input", name: "VAR" },
     ],
+    extensions: ["var_validator"],
   },
   // other
   {
@@ -634,5 +638,11 @@ Blockly.Extensions.register("trigger_extension", function () {
     if (conditions) conditions.setCheck(newValue + "Condition");
     effects.setCheck(newValue + "Effect");
     return newValue;
+  });
+});
+
+Blockly.Extensions.register("var_validator", function () {
+  this.getField("VAR").setValidator((newValue) => {
+    return newValue.replace(/[^a-zA-Z0-9_\u4e00-\u9fa5]/g, "");
   });
 });
