@@ -441,6 +441,18 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       },
     ],
   },
+  // sadd
+  {
+    type: "sadd",
+    output: "String",
+    inputsInline: "true",
+    colour: 210,
+    message0: "拼接 %1 与 %2",
+    args0: [
+      { type: "input_value", name: "LEFT", check: "String" },
+      { type: "input_value", name: "RIGHT", check: "String" },
+    ],
+  },
   // ---------------------------------------------------------------- Condition
   // check
   {

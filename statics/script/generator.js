@@ -108,6 +108,8 @@ SCG.input = (block) =>
 SCG.digit = (block) => innerFunc("dight", getValue(block, "TEXT"));
 SCG.str = (block) => innerFunc("str", getValue(block, "NUM"));
 SCG.atb = (block) => varFunc(getField(block, "TYPE"));
+SCG.sadd = (block) =>
+  innerFunc("sadd", [getValue(block, "LEFT"), getValue(block, "RIGHT")]);
 // ------------------------------------------------------------------ Condition
 SCG.check = (block) =>
   makeFunc("check" + getField(block, "TYPE"), getValue(block, "TEXT"));

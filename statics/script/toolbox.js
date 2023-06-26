@@ -163,6 +163,15 @@ export const toolbox = {
         },
         // atb
         { kind: "block", type: "atb" },
+        // sadd
+        {
+          kind: "block",
+          type: "sadd",
+          inputs: {
+            LEFT: { shadow: { type: "text" } },
+            RIGHT: { shadow: { type: "text" } },
+          },
+        },
       ],
     },
     // -------------------------------------------------------------- Condition
