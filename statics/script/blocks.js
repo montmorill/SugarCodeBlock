@@ -634,10 +634,16 @@ Blockly.Msg.TEXT_TEXT_TOOLTIP = "";
 Blockly.Msg.TEXT_TEXT_HELPURL = "";
 
 Blockly.Extensions.register("append_extension", function () {
+  const block = this;
   const type = this.getField("TYPE");
   const text = this.getInput("TEXT");
   type.setValidator((newValue) => {
     text.setCheck(newValue === "append" ? ["Number", "String"] : "String");
+    if (block.nextConnection)
+      block.nextConnection.disconnect();
+    if (newValue === "finish")
+      block.setNextStatement(false);
+    else block.setNextStatement(true, "ChatEffect");
     return newValue;
   });
 });
