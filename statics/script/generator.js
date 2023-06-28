@@ -54,6 +54,12 @@ SCG.calc = (block) =>
     getValue(block, "RIGHT"),
   ]);
 SCG.abs = (block) => innerFunc("abs", getValue(block, "NUM"));
+SCG.digit = (block) => innerFunc("dight", getValue(block, "TEXT"));
+SCG.str = (block) => innerFunc("str", getValue(block, "NUM"));
+SCG.sadd = (block) =>
+  innerFunc("sadd", [getValue(block, "LEFT"), getValue(block, "RIGHT")]);
+SCG.random = (block) =>
+  varFunc("random", [getValue(block, "MIN"), getValue(block, "MAX")]);
 // ===================================================================== Hijack
 // ------------------------------------------------------------------- Variable
 // ------------------------------------------------------------------ Condition
@@ -97,19 +103,13 @@ SCG.change_variable = (block) =>
 SCG.get_variable = (block) =>
   varFunc(getField(block, "TYPE"), getField(block, "VAR"));
 SCG.other = (block) => varFunc("other" + getField(block, "TYPE"));
-SCG.random = (block) =>
-  varFunc("random", [getValue(block, "MIN"), getValue(block, "MAX")]);
 SCG.input = (block) =>
   varFunc("input", [
     getValue(block, "START"),
     getValue(block, "END"),
     getValue(block, "STEP"),
   ]);
-SCG.digit = (block) => innerFunc("dight", getValue(block, "TEXT"));
-SCG.str = (block) => innerFunc("str", getValue(block, "NUM"));
 SCG.atb = (block) => varFunc(getField(block, "TYPE"));
-SCG.sadd = (block) =>
-  innerFunc("sadd", [getValue(block, "LEFT"), getValue(block, "RIGHT")]);
 // ------------------------------------------------------------------ Condition
 SCG.check = (block) =>
   makeFunc("check" + getField(block, "TYPE"), getValue(block, "TEXT"));

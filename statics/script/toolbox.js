@@ -35,6 +35,36 @@ export const toolbox = {
           type: "abs",
           inputs: { NUM: { shadow: { type: "number" } } },
         },
+        // digit
+        {
+          kind: "block",
+          type: "digit",
+          inputs: { TEXT: { shadow: { type: "text" } } },
+        },
+        // str
+        {
+          kind: "block",
+          type: "str",
+          inputs: { NUM: { shadow: { type: "number" } } },
+        },
+        // sadd
+        {
+          kind: "block",
+          type: "sadd",
+          inputs: {
+            LEFT: { shadow: { type: "text" } },
+            RIGHT: { shadow: { type: "text" } },
+          },
+        },
+        // random
+        {
+          kind: "block",
+          type: "random",
+          inputs: {
+            MIN: { shadow: { type: "number" } },
+            MAX: { shadow: { type: "number", fields: { NUM: 100 } } },
+          },
+        },
       ],
     },
     // ================================================================= Hijack
@@ -130,15 +160,6 @@ export const toolbox = {
         { kind: "block", type: "get_variable", fields: { VAR: "a" } },
         // other
         { kind: "block", type: "other" },
-        // random
-        {
-          kind: "block",
-          type: "random",
-          inputs: {
-            MIN: { shadow: { type: "number" } },
-            MAX: { shadow: { type: "number", fields: { NUM: 100 } } },
-          },
-        },
         // input
         {
           kind: "block",
@@ -149,29 +170,8 @@ export const toolbox = {
             STEP: { shadow: { type: "number", fields: { NUM: 99999 } } },
           },
         },
-        // digit
-        {
-          kind: "block",
-          type: "digit",
-          inputs: { TEXT: { shadow: { type: "text" } } },
-        },
-        // str
-        {
-          kind: "block",
-          type: "str",
-          inputs: { NUM: { shadow: { type: "number" } } },
-        },
         // atb
         { kind: "block", type: "atb" },
-        // sadd
-        {
-          kind: "block",
-          type: "sadd",
-          inputs: {
-            LEFT: { shadow: { type: "text" } },
-            RIGHT: { shadow: { type: "text" } },
-          },
-        },
       ],
     },
     // -------------------------------------------------------------- Condition

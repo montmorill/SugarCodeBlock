@@ -121,6 +121,48 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     message0: "%1 的绝对值",
     args0: [{ type: "input_value", name: "NUM", check: "Number" }],
   },
+  // digit
+  {
+    type: "digit",
+    output: "Number",
+    inputsInline: "true",
+    colour: 160,
+    message0: "将 %1 转换为数字",
+    args0: [{ type: "input_value", name: "TEXT", check: "String" }],
+  },
+  // str
+  {
+    type: "str",
+    output: "String",
+    inputsInline: "true",
+    colour: 160,
+    message0: "将 %1 转换为文本",
+    args0: [{ type: "input_value", name: "NUM", check: "Number" }],
+  },
+  // sadd
+  {
+    type: "sadd",
+    output: "String",
+    inputsInline: "true",
+    colour: 160,
+    message0: "拼接 %1 与 %2",
+    args0: [
+      { type: "input_value", name: "LEFT", check: "String" },
+      { type: "input_value", name: "RIGHT", check: "String" },
+    ],
+  },
+  // random
+  {
+    type: "random",
+    output: "Number",
+    inputsInline: "true",
+    colour: 160,
+    message0: "从 %1 到 %2 的随机数",
+    args0: [
+      { type: "input_value", name: "MIN", check: "Number" },
+      { type: "input_value", name: "MAX", check: "Number" },
+    ],
+  },
   // =================================================================== Hijack
   // ----------------------------------------------------------------- Variable
   // ---------------------------------------------------------------- Condition
@@ -368,18 +410,6 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       },
     ],
   },
-  // random
-  {
-    type: "random",
-    output: "Number",
-    inputsInline: "true",
-    colour: 210,
-    message0: "从 %1 到 %2 的随机数",
-    args0: [
-      { type: "input_value", name: "MIN", check: "Number" },
-      { type: "input_value", name: "MAX", check: "Number" },
-    ],
-  },
   // input
   {
     type: "input",
@@ -392,24 +422,6 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       { type: "input_value", name: "END", check: "Number" },
       { type: "input_value", name: "STEP", check: "Number" },
     ],
-  },
-  // digit
-  {
-    type: "digit",
-    output: "Number",
-    inputsInline: "true",
-    colour: 210,
-    message0: "将 %1 转换为数字",
-    args0: [{ type: "input_value", name: "TEXT", check: "String" }],
-  },
-  // str
-  {
-    type: "str",
-    output: "String",
-    inputsInline: "true",
-    colour: 210,
-    message0: "将 %1 转换为文本",
-    args0: [{ type: "input_value", name: "NUM", check: "Number" }],
   },
   // atb
   {
@@ -439,18 +451,6 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
           ["血量百分比", "血量百分比"],
         ],
       },
-    ],
-  },
-  // sadd
-  {
-    type: "sadd",
-    output: "String",
-    inputsInline: "true",
-    colour: 210,
-    message0: "拼接 %1 与 %2",
-    args0: [
-      { type: "input_value", name: "LEFT", check: "String" },
-      { type: "input_value", name: "RIGHT", check: "String" },
     ],
   },
   // ---------------------------------------------------------------- Condition
