@@ -106,7 +106,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
           ["//", "idiv"],
           ["%", "mod"],
           ["**", "pow"],
-          ["取整", "round"],
+          ["保留小数位", "round"],
         ],
       },
       { type: "input_value", name: "RIGHT", check: "Number" },
