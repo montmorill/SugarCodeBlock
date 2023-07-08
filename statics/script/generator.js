@@ -54,7 +54,7 @@ SCG.calc = (block) =>
     getValue(block, "RIGHT"),
   ]);
 SCG.abs = (block) => innerFunc("abs", getValue(block, "NUM"));
-SCG.digit = (block) => innerFunc("dight", getValue(block, "TEXT"));
+SCG.digit = (block) => innerFunc("digit", getValue(block, "TEXT"));
 SCG.str = (block) => innerFunc("str", getValue(block, "NUM"));
 SCG.sadd = (block) =>
   innerFunc("sadd", [getValue(block, "LEFT"), getValue(block, "RIGHT")]);
