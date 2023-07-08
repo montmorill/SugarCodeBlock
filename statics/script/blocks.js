@@ -453,6 +453,32 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       },
     ],
   },
+  ,
+  // f-getIdx
+  {
+    type: "f-getIdx",
+    output: "Number",
+    inputsInline: "true",
+    colour: 210,
+    message0: "%1 在 %2 中第一次出现的位置",
+    args0: [
+      { type: "input_value", name: "TEXT1", check: ["String"] },
+      { type: "input_value", name: "TEXT2", check: ["String"] },
+    ],
+  },
+  ,
+  // f-getStrSml
+  {
+    type: "f-getStrSml",
+    output: "Number",
+    inputsInline: "true",
+    colour: 210,
+    message0: "%1 与 %2 的相似度",
+    args0: [
+      { type: "input_value", name: "TEXT1", check: ["String"] },
+      { type: "input_value", name: "TEXT2", check: ["String"] },
+    ],
+  },
   // ---------------------------------------------------------------- Condition
   // check
   {
@@ -639,10 +665,8 @@ Blockly.Extensions.register("append_extension", function () {
   const text = this.getInput("TEXT");
   type.setValidator((newValue) => {
     text.setCheck(newValue === "append" ? ["Number", "String"] : "String");
-    if (block.nextConnection)
-      block.nextConnection.disconnect();
-    if (newValue === "finish")
-      block.setNextStatement(false);
+    if (block.nextConnection) block.nextConnection.disconnect();
+    if (newValue === "finish") block.setNextStatement(false);
     else block.setNextStatement(true, "ChatEffect");
     return newValue;
   });

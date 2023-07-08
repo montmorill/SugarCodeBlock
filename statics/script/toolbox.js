@@ -172,6 +172,24 @@ export const toolbox = {
         },
         // atb
         { kind: "block", type: "atb" },
+        // f-getIdx
+        {
+          kind: "block",
+          type: "f-getIdx",
+          inputs: {
+            TEXT1: { shadow: { type: "text" } },
+            TEXT2: { shadow: { type: "text" } },
+          },
+        },
+        // f-getStrSml
+        {
+          kind: "block",
+          type: "f-getStrSml",
+          inputs: {
+            TEXT1: { shadow: { type: "text" } },
+            TEXT2: { shadow: { type: "text" } },
+          },
+        },
       ],
     },
     // -------------------------------------------------------------- Condition

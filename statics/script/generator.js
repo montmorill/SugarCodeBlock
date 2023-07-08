@@ -110,6 +110,11 @@ SCG.input = (block) =>
     getValue(block, "STEP"),
   ]);
 SCG.atb = (block) => varFunc(getField(block, "TYPE"));
+SCG.atb = (block) => varFunc(getField(block, "TYPE"));
+SCG["f-getIdx"] = (block) =>
+  varFunc("f-getIdx", [getField(block, "TEXT1"), getField(block, "TEXT2")]);
+SCG["f-getStrSml"] = (block) =>
+  varFunc("f-getStrSml", [getField(block, "TEXT1"), getField(block, "TEXT2")]);
 // ------------------------------------------------------------------ Condition
 SCG.check = (block) =>
   makeFunc("check" + getField(block, "TYPE"), getValue(block, "TEXT"));
