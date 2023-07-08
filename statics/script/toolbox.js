@@ -165,9 +165,9 @@ export const toolbox = {
           kind: "block",
           type: "input",
           inputs: {
-            START: { shadow: { type: "number", fields: { NUM: 99999 } } },
-            END: { shadow: { type: "number", fields: { NUM: 99999 } } },
-            STEP: { shadow: { type: "number", fields: { NUM: 99999 } } },
+            START: { shadow: { type: "number", fields: { NUM: 1 } } },
+            END: { shadow: { type: "number", fields: { NUM: 1 } } },
+            STEP: { shadow: { type: "number", fields: { NUM: 1 } } },
           },
         },
         // atb
@@ -250,9 +250,9 @@ export const toolbox = {
           kind: "block",
           type: "slic",
           inputs: {
-            START: { shadow: { type: "number", fields: { NUM: 99999 } } },
-            END: { shadow: { type: "number", fields: { NUM: 99999 } } },
-            STEP: { shadow: { type: "number", fields: { NUM: 99999 } } },
+            START: { shadow: { type: "number", fields: { NUM: 1 } } },
+            END: { shadow: { type: "number", fields: { NUM: 1 } } },
+            STEP: { shadow: { type: "number", fields: { NUM: 1 } } },
           },
         },
         // skip

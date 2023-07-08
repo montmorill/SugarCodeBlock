@@ -105,10 +105,11 @@ SCG.get_variable = (block) =>
 SCG.other = (block) => varFunc("other" + getField(block, "TYPE"));
 SCG.input = (block) =>
   varFunc("input", [
-    getValue(block, "START"),
-    getValue(block, "END"),
+    (getField(block, "TYPE_START") === "-" ? -1 : 1) * getValue(block, "START"),
+    (getField(block, "TYPE_END") === "-" ? -1 : 1) * getValue(block, "END"),
     getValue(block, "STEP"),
   ]);
+SCG.input_arg = (block) => getValue(block, "TYPE");
 SCG.atb = (block) => varFunc(getField(block, "TYPE"));
 SCG.atb = (block) => varFunc(getField(block, "TYPE"));
 SCG["f-getIdx"] = (block) =>
@@ -149,8 +150,8 @@ SCG.append = (block) => {
 };
 SCG.slic = (block) =>
   makeFunc("slic", [
-    getValue(block, "START"),
-    getValue(block, "END"),
+    (getField(block, "TYPE_START") === "-" ? -1 : 1) * getValue(block, "START"),
+    (getField(block, "TYPE_END") === "-" ? -1 : 1) * getValue(block, "END"),
     getValue(block, "STEP"),
   ]);
 SCG.skip = (block) => makeFunc("skip", getValue(block, "NUM"));

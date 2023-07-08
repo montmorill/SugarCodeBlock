@@ -416,9 +416,26 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     output: "String",
     inputsInline: "true",
     colour: 210,
-    message0: "获取输入并切片 [ %1 : %2 : %3 ]",
+    message0:
+      "获取输入并切片 [ 从 %1 第 %2 个字符开始 : 到 %3 第 %4 个字符结束 : 步长为 %5 ]",
     args0: [
+      {
+        type: "field_dropdown",
+        name: "TYPE_START",
+        options: [
+          ["正数", "+"],
+          ["倒数", "-"],
+        ],
+      },
       { type: "input_value", name: "START", check: "Number" },
+      {
+        type: "field_dropdown",
+        name: "TYPE_END",
+        options: [
+          ["正数", "+"],
+          ["倒数", "-"],
+        ],
+      },
       { type: "input_value", name: "END", check: "Number" },
       { type: "input_value", name: "STEP", check: "Number" },
     ],
@@ -618,9 +635,26 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     nextStatement: "ChatEffect",
     inputsInline: "true",
     colour: 210,
-    message0: "将当前文本切片 [ %1 : %2 : %3 ]",
+    message0:
+      "将当前文本切片 [ 从 %1 第 %2 个字符开始 : 到 %3 第 %4 个字符结束 : 步长为 %5 ]",
     args0: [
+      {
+        type: "field_dropdown",
+        name: "TYPE_START",
+        options: [
+          ["正数", "+"],
+          ["倒数", "-"],
+        ],
+      },
       { type: "input_value", name: "START", check: "Number" },
+      {
+        type: "field_dropdown",
+        name: "TYPE_END",
+        options: [
+          ["正数", "+"],
+          ["倒数", "-"],
+        ],
+      },
       { type: "input_value", name: "END", check: "Number" },
       { type: "input_value", name: "STEP", check: "Number" },
     ],
