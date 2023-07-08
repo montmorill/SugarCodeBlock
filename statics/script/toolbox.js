@@ -164,6 +164,7 @@ export const toolbox = {
         {
           kind: "block",
           type: "input",
+          fields: { TYPE_END: "-" },
           inputs: {
             START: { shadow: { type: "number", fields: { NUM: 1 } } },
             END: { shadow: { type: "number", fields: { NUM: 1 } } },
@@ -249,6 +250,7 @@ export const toolbox = {
         {
           kind: "block",
           type: "slic",
+          fields: { TYPE_END: "-" },
           inputs: {
             START: { shadow: { type: "number", fields: { NUM: 1 } } },
             END: { shadow: { type: "number", fields: { NUM: 1 } } },

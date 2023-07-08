@@ -483,7 +483,6 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       { type: "input_value", name: "TEXT2", check: ["String"] },
     ],
   },
-  ,
   // f-getStrSml
   {
     type: "f-getStrSml",
