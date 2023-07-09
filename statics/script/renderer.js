@@ -71,15 +71,9 @@ class SugarCodeConstantProvider extends Blockly.blockRendering
     switch (connection.type) {
       case Blockly.INPUT_VALUE:
       case Blockly.OUTPUT_VALUE:
-        if (checks && checks.includes("Boolean")) {
-          return this.TRI_TAB;
-        }
-        if (checks && checks.includes("Number")) {
-          return this.PUZZLE_TAB;
-        }
-        if (checks && checks.includes("String")) {
-          return this.RECT_TAB;
-        }
+        if (checks && checks.includes("Boolean")) return this.TRI_TAB;
+        if (checks && checks.includes("Number")) return this.PUZZLE_TAB;
+        if (checks && checks.includes("String")) return this.RECT_TAB;
         throw Error("Unknown connection type");
       case Blockly.PREVIOUS_STATEMENT:
       case Blockly.NEXT_STATEMENT:
