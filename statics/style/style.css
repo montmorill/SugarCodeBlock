@@ -1,7 +1,6 @@
 @import url(./font/Open-Sans/font.css);
 @import url(./font/Material-Icons/font.css);
 
-html,
 body,
 #blocklyDiv {
   width: 100vw;
