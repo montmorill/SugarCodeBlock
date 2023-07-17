@@ -1,5 +1,5 @@
 const scripts = document.getElementsByTagName("script");
-const type = scripts[scripts.length - 2].src.split("?")[1];
+const type = scripts[scripts.length - 1].src.split("?")[1];
 
 import { blocks as base_blocks } from "./blocks.js";
 const { blocks } = await import(`./${type}/blocks.js`);
