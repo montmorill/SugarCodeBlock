@@ -1,9 +1,21 @@
-import { blocks } from "./blocks.js";
-import { toolbox } from "./toolbox.js";
-import { SugarCodeGenerator } from "./generator.js";
+const scripts = document.getElementsByTagName("script");
+const type = scripts[scripts.length - 2].src.split("?")[1];
+
+import { blocks as base_blocks } from "./blocks.js";
+const { blocks } = await import(`./${type}/blocks.js`);
+const { toolbox } = await import(`./${type}/toolbox.js`);
+const { SugarCodeGenerator } = await import(`./${type}/generator.js`);
 import "./renderer.js";
 import "./category.js";
 
+Blockly.Msg.TEXT_TEXT_TOOLTIP = "";
+Blockly.Msg.TEXT_TEXT_HELPURL = "";
+Blockly.Msg.SGCB_BASE = 160;
+Blockly.Msg.SGCB_CONTROL = 232;
+Blockly.Msg.SGCB_VARIABLE = 304;
+Blockly.Msg.SGCB_CONDITION = 16;
+Blockly.Msg.SGCB_EFFECT = 88;
+Blockly.common.defineBlocks(base_blocks);
 Blockly.common.defineBlocks(blocks);
 
 const workspace = Blockly.inject("blocklyDiv", {
@@ -13,33 +25,14 @@ const workspace = Blockly.inject("blocklyDiv", {
   grid: { spacing: 20, length: 3, colour: "#ccc", snap: true },
 });
 
-workspace.addChangeListener(Blockly.Events.disableOrphans);
+// workspace.addChangeListener(Blockly.Events.disableOrphans);
 
 workspace.addChangeListener(function (event) {
   if (event.isUiEvent) return;
   const code = SugarCodeGenerator.workspaceToCode(workspace);
   document.getElementById("codePreview").innerText = code;
 });
-/*
-workspace.addChangeListener(function (event) {
-  console.log(event.type);
-  if (event.isUiEvent) return;
-  const block = workspace.getBlockById(event.blockId);
-  if (block && block.previousConnection && block.nextConnection) {
-    console.log(block.previousConnection.check_, block.nextConnection.check_);
-    if (block.previousConnection.isConnected()) {
-      block.nextConnection.setCheck(block.previousConnection.check_);
-    } else if (block.nextConnection.isConnected()) {
-      block.previousConnection.setCheck(block.nextConnection.check_);
-    } else {
-      const prototype = Blockly.Blocks[block.type];
-      block.previousConnection.setCheck(prototype.previousStatement);
-      block.nextConnection.setCheck(prototype.nextStatement);
-    }
-    console.log(block.previousConnection.check_, block.nextConnection.check_);
-  }
-});
-*/
+
 const toolboxs = document.getElementsByClassName("blocklyToolboxContents")[0];
 const firstChild = toolboxs.firstChild;
 const dumpButton = document.createElement("button");
@@ -56,7 +49,7 @@ dumpButton.onclick = () => {
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
   const date = new Date();
-  link.download = date.getTime() + ".sgc";
+  link.download = date.getTime() + `.${type}.sgc`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -69,7 +62,7 @@ saveButton.onclick = () => {
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
   const date = new Date();
-  link.download = date.getTime() + ".sgcb";
+  link.download = date.getTime() + `.${type}.sgcb`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -79,7 +72,7 @@ loadButton.onclick = () => {
   fileInput.click();
 };
 fileInput.onchange = () => {
-  let reader = new FileReader();
+  const reader = new FileReader();
   reader.readAsText(fileInput.files[0]);
   reader.onload = (event) => {
     const xml_text = event.target.result;

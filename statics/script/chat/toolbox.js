@@ -1,25 +1,18 @@
 export const toolbox = {
   kind: "categoryToolbox",
   contents: [
-    // =================================================================== Base
+    // ------------------------------------------------------------------- Base
     {
       kind: "category",
       name: "基本",
-      colour: 160,
+      colour: "%{BKY_SGCB_BASE}",
       contents: [
-        // ------------------------------------------------------------ Trigger
-        // trigger
-        { kind: "block", type: "trigger" },
-        // effect
-        { kind: "block", type: "effect" },
-        // --------------------------------------------------------------- Data
         // boolean
         { kind: "block", type: "boolean" },
         // number
         { kind: "block", type: "number" },
         // text
         { kind: "block", type: "text", fields: { TEXT: "Hello, Sugar!" } },
-        // --------------------------------------------------------------- Math
         // calc
         {
           kind: "block",
@@ -67,73 +60,31 @@ export const toolbox = {
         },
       ],
     },
-    // ================================================================= Hijack
-    // --------------------------------------------------------------- Variable
-    { kind: "category", name: "变量", colour: 360, contents: [] },
-    // -------------------------------------------------------------- Condition
-    { kind: "category", name: "条件", colour: 360, contents: [] },
-    // ----------------------------------------------------------------- Effect
+    // ---------------------------------------------------------------- Control
     {
       kind: "category",
-      name: "效果",
-      colour: 360,
+      name: "控制",
+      colour: "%{BKY_SGCB_CONTROL}",
       contents: [
-        // coin
+        // trigger
+        { kind: "block", type: "trigger" },
+        // while
+        { kind: "block", type: "while" },
+        // for
         {
           kind: "block",
-          type: "coin",
-          inputs: { NUM: { shadow: { type: "number" } } },
+          type: "for",
+          inputs: { NUM: { shadow: { type: "number", fields: { NUM: 10 } } } },
         },
-        // weight
-        {
-          kind: "block",
-          type: "weight",
-          inputs: { NUM: { shadow: { type: "number" } } },
-        },
-        // attr
-        {
-          kind: "block",
-          type: "attr",
-          inputs: { NUM: { shadow: { type: "number" } } },
-        },
-        // trueAttact
-        {
-          kind: "block",
-          type: "trueAttact",
-          inputs: { NUM: { shadow: { type: "number" } } },
-        },
-        // fre
-        {
-          kind: "block",
-          type: "fre",
-          inputs: { NUM: { shadow: { type: "number" } } },
-        },
-        // costFre
-        {
-          kind: "block",
-          type: "costFre",
-          inputs: { NUM: { shadow: { type: "number" } } },
-        },
-        // SeeCha
-        { kind: "block", type: "SeeCha" },
-        // pro_get
-        {
-          kind: "block",
-          type: "pro_get",
-          inputs: {
-            PRO: { shadow: { type: "number", fields: { NUM: 0.1 } } },
-            MIN: { shadow: { type: "number" } },
-            MAX: { shadow: { type: "number", fields: { NUM: 100 } } },
-          },
-        },
+        // break
+        { kind: "block", type: "break" },
       ],
     },
-    // =================================================================== Chat
     // --------------------------------------------------------------- Variable
     {
       kind: "category",
       name: "变量",
-      colour: 210,
+      colour: "%{BKY_SGCB_VARIABLE}",
       contents: [
         // newTempNum
         {
@@ -197,7 +148,7 @@ export const toolbox = {
     {
       kind: "category",
       name: "条件",
-      colour: 210,
+      colour: "%{BKY_SGCB_CONDITION}",
       contents: [
         {
           kind: "block",
@@ -238,7 +189,7 @@ export const toolbox = {
     {
       kind: "category",
       name: "效果",
-      colour: 210,
+      colour: "%{BKY_SGCB_EFFECT}",
       contents: [
         // append
         {
