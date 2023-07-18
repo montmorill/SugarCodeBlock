@@ -169,7 +169,6 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       },
     ],
   },
-  ,
   // f-getIdx
   {
     type: "f-getIdx",
