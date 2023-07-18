@@ -1,7 +1,11 @@
-const scripts = document.getElementsByTagName("script");
-const type = scripts[scripts.length - 1].src.split("?")[1];
+import { capitalize } from "./utils.js";
 
-import { blocks as base_blocks } from "./blocks.js";
+const type = window.location.hash.toLowerCase().substring(1);
+document.getElementsByTagName(
+  "title"
+)[0].innerText = `SugarCodeBlock | ${capitalize(type)}`;
+
+import "./blocks.js";
 const { blocks } = await import(`./${type}/blocks.js`);
 const { toolbox } = await import(`./${type}/toolbox.js`);
 const { SugarCodeGenerator } = await import(`./${type}/generator.js`);
@@ -15,7 +19,6 @@ Blockly.Msg.SGCB_CONTROL = 120;
 Blockly.Msg.SGCB_VARIABLE = 310;
 Blockly.Msg.SGCB_CONDITION = 210;
 Blockly.Msg.SGCB_EFFECT = 0;
-Blockly.common.defineBlocks(base_blocks);
 Blockly.common.defineBlocks(blocks);
 
 const workspace = Blockly.inject("blocklyDiv", {
@@ -38,11 +41,14 @@ const firstChild = toolboxs.firstChild;
 const dumpButton = document.createElement("button");
 const saveButton = document.createElement("button");
 const loadButton = document.createElement("button");
-const fileInput = document.getElementById("fileInput");
+const fileInput = document.createElement("input");
 dumpButton.innerText = "导出为sgc";
 saveButton.innerText = "保存工程";
 loadButton.innerText = "加载工程";
-loadButton.style["margin-bottom"] = "0.6em";
+loadButton.style.marginBottom = "0.6em";
+fileInput.type = "file";
+fileInput.style.display = "none";
+fileInput.accept = `.${type}.sgcb`;
 dumpButton.onclick = () => {
   const code = SugarCodeGenerator.workspaceToCode(workspace);
   const blob = new Blob([code], { type: "text/plain;charset=utf-8" });
@@ -83,3 +89,4 @@ fileInput.onchange = () => {
 toolboxs.insertBefore(dumpButton, firstChild);
 toolboxs.insertBefore(saveButton, firstChild);
 toolboxs.insertBefore(loadButton, firstChild);
+toolboxs.insertBefore(fileInput, firstChild);

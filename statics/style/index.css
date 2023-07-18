@@ -31,7 +31,7 @@ h1 {
   font-size: 3rem;
 }
 
-.cards {
+#cards {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,7 +69,7 @@ h1 {
     font-size: 2rem;
   }
 
-  .cards {
+  #cards {
     flex-direction: column;
     gap: 1.5rem;
   }

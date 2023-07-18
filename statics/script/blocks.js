@@ -1,4 +1,4 @@
-export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
+const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
   // --------------------------------------------------------------------- Base
   // boolean
   {
@@ -154,7 +154,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       {
         type: "input_statement",
         name: "EFFECTS",
-        check:"Control",
+        check: "Control",
       },
     ],
   },
@@ -181,7 +181,7 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
       {
         type: "input_statement",
         name: "EFFECTS",
-        check:"Control",
+        check: "Control",
       },
     ],
   },
@@ -195,3 +195,5 @@ export const blocks = Blockly.common.createBlockDefinitionsFromJsonArray([
     message0: "跳出循环",
   },
 ]);
+
+Blockly.common.defineBlocks(blocks);

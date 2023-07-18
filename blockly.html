@@ -3,21 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SugarCodeBlock | Chat</title>
+    <title>SugarCodeBlock | Blockly</title>
     <link rel="stylesheet" href="./statics/style/style.css" />
     <link rel="shortcut icon" href="./favicon.ico" />
     <script src="https://unpkg.com/blockly@9.3.3/blockly.min.js"></script>
     <script src="https://unpkg.com/blockly@9.3.3/msg/zh-hans.js"></script>
-    <script type="module" src="./statics/script/index.js?chat" defer></script>
+    <script type="module" src="./statics/script/blockly.js" defer></script>
   </head>
   <body>
     <div id="blocklyDiv"></div>
     <pre><code id="codePreview"></code></pre>
-    <input
-      id="fileInput"
-      type="file"
-      style="display: none"
-      accept=".chat.sgcb"
-    />
   </body>
 </html>
