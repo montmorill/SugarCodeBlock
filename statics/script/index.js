@@ -11,10 +11,10 @@ import "./category.js";
 Blockly.Msg.TEXT_TEXT_TOOLTIP = "";
 Blockly.Msg.TEXT_TEXT_HELPURL = "";
 Blockly.Msg.SGCB_BASE = 160;
-Blockly.Msg.SGCB_CONTROL = 232;
-Blockly.Msg.SGCB_VARIABLE = 304;
-Blockly.Msg.SGCB_CONDITION = 16;
-Blockly.Msg.SGCB_EFFECT = 88;
+Blockly.Msg.SGCB_CONTROL = 120;
+Blockly.Msg.SGCB_VARIABLE = 310;
+Blockly.Msg.SGCB_CONDITION = 210;
+Blockly.Msg.SGCB_EFFECT = 0;
 Blockly.common.defineBlocks(base_blocks);
 Blockly.common.defineBlocks(blocks);
 
